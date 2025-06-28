@@ -1,0 +1,85 @@
+body {
+  margin: 30px;
+}
+
+h1 {
+  font-size: 72px;
+  font-family: sans-serif;
+}
+
+h2 {
+  font-family: sans-serif;
+}
+
+.parent {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+}
+
+.pad {
+  /* padding: 10px; */
+  background-color: #C8E6C9;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+}
+
+.pad {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pad>button {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  border-color: black;
+}
+
+#choice-one>button {
+  background-color: #DC0032;
+}
+
+#choice-two>button {
+  background-color: #FAF9F6;
+}
+
+#choice-three>button {
+  background-color: #DC0032;
+}
+
+#current-value {
+  background-color: #DC0032;
+}
+
+#target {
+  background-color: #DC0032;
+}
+
+#continue {
+  background-color: #B9D7EB;
+}
+
+#continue>button {
+  background-color: #B9D7EB;
+}
+
+#score {
+  background-color: #B9D7EB;
+}
+
+#shots {
+  background-color: #B9D7EB;
+}
+
+#current-level {
+  background-color: #B9D7EB;
+}
