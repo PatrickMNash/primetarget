@@ -1,5 +1,6 @@
 body {
   margin: 30px;
+  background-color: rgb(229, 244, 249);
 }
 
 h1 {
@@ -9,9 +10,9 @@ h1 {
 
 .parent {
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(3, 150px);
-  grid-template-rows: repeat(3, 150px);
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
 }
 
 .pad {
@@ -19,9 +20,9 @@ h1 {
   border-radius: 5px;
   display: grid;
   place-items: center;
-}
-
-.pad {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
   font-family: sans-serif;
   font-size: 24px;
   font-weight: bold;
@@ -39,46 +40,18 @@ h1 {
   border-color: black;
 }
 
-#choice-one>button {
+.red {
   background-color: #DC0032;
 }
 
-#choice-two>button {
+.white {
   background-color: #FAF9F6;
 }
 
-#choice-three>button {
-  background-color: #DC0032;
-}
-
-#current-value {
-  background-color: #DC0032;
-}
-
-#target {
-  background-color: #DC0032;
-}
-
-#continue {
+.blue {
   background-color: #B9D7EB;
 }
 
-#continue>button {
-  background-color: #B9D7EB;
-}
-
-#score {
-  background-color: #B9D7EB;
-}
-
-#shots {
-  background-color: #B9D7EB;
-}
-
-#current-level {
-  background-color: #B9D7EB;
-}
-
-#buy-me-a-coffee>p {
+.buy-me-a-coffee>p {
   font-family: sans-serif;
 }
