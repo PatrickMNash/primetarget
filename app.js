@@ -110,7 +110,7 @@ function setShotsRemaining () {
 }
 
 function setHearts () {
-  const heartsDisplay = document.getElementById("heart");
+  const heartsDisplay = document.getElementById("heart-button");
   heartsDisplay.innerText = hearts;
 }
 
