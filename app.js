@@ -1,4 +1,4 @@
-const munitions = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
 const primeTarget = 47;
 const startingValue = 86;
 let currentValue = startingValue;
@@ -8,28 +8,29 @@ let score = 0;
 let maxMoves = 9
 let currentLevel = 1;
 let highScore = 0;
+let hearts = 3;
 
-function getMunition (munitions) {
-  const randomMunition = munitions[Math.floor(Math.random() * munitions.length)];
-  return randomMunition;
+function getPrime (primes) {
+  const randomPrime = primes[Math.floor(Math.random() * primes.length)];
+  return randomPrime;
 }
 
-function buildPath (startingValue, primeTarget, munitions) {
+function buildPath (startingValue, primeTarget, primes) {
   let start = startingValue;
   const goal = primeTarget;
-  const _munitions = munitions;
+  const _primes = primes;
   const path = [];
 
   while (start != goal) {
-    let munition = start + 1;
-    while (munition > start) {
-      munition = getMunition(_munitions);
+    let prime = start + 1;
+    while (prime > start) {
+      prime = getPrime(_primes);
     }
-    start = start - munition;
+    start = start - prime;
     if (start >= goal) {
-      path.push(munition);
+      path.push(prime);
     } else {
-      start = start + munition;
+      start = start + prime;
     }
     if (start == goal + 1) {
       const undo = path.pop();
@@ -39,11 +40,11 @@ function buildPath (startingValue, primeTarget, munitions) {
   return path;
 }
 
-function buildChoices (munition, munitions) {
+function buildChoices (prime, primes) {
   const choices = [];
-  choices.push(munition);
+  choices.push(prime);
   while (choices.length < 3) {
-    const choice = getMunition(munitions);
+    const choice = getPrime(primes);
     if (choices.indexOf(choice) == -1) {
       choices.push(choice);
     }
@@ -51,15 +52,15 @@ function buildChoices (munition, munitions) {
   return choices;
 }
 
-function buildRound (startingValue, primeTarget, munitions, maxMoves) {
-  let round = buildPath(startingValue, primeTarget, munitions);
+function buildRound (startingValue, primeTarget, primes, maxMoves) {
+  let round = buildPath(startingValue, primeTarget, primes);
   while (round.length != maxMoves) {
-    round = buildPath(startingValue, primeTarget, munitions);
+    round = buildPath(startingValue, primeTarget, primes);
   }
 
   for (let i = 0; i < round.length; i++) {
-    const munition = round[i];
-    const choices = buildChoices(munition, munitions);
+    const prime = round[i];
+    const choices = buildChoices(prime, primes);
     round[i] = choices;
   }
 
@@ -79,13 +80,13 @@ function setTarget (value) {
 function setChoices (choices) {
   const choiceOne = document.getElementById("choice-one").children[0];
   choiceOne.innerText = choices[0];
-  choiceOne.onclick = () => applyMunition(choices[0]);
+  choiceOne.onclick = () => applyPrime(choices[0]);
   const choiceTwo = document.getElementById("choice-two").children[0];
   choiceTwo.innerText = choices[1];
-  choiceTwo.onclick = () => applyMunition(choices[1]);
+  choiceTwo.onclick = () => applyPrime(choices[1]);
   const choiceThree = document.getElementById("choice-three").children[0];
   choiceThree.innerText = choices[2];
-  choiceThree.onclick = () => applyMunition(choices[2]);
+  choiceThree.onclick = () => applyPrime(choices[2]);
 }
 
 function setScore () {
@@ -98,7 +99,22 @@ function setCurrentLevel () {
   levelDisplay.innerText = currentLevel;
 }
 
-function applyMunition (value) {
+function setHighScore () {
+  const highScoreDisplay = document.getElementById("high-score");
+  highScoreDisplay.innerText = highScore;
+}
+
+function setShotsRemaining () {
+  const shotsRemaining = document.getElementById("shots");
+  shotsRemaining.innerText = currentRound.length - choicesIndex;
+}
+
+function setHearts () {
+  const heartsDisplay = document.getElementById("heart");
+  heartsDisplay.innerText = hearts;
+}
+
+function applyPrime (value) {
   currentValue = currentValue - value;
   setCurrentValue(currentValue);
   choicesIndex++;
@@ -121,6 +137,7 @@ function scoreMove (value) {
       maxMoves--;
     }
     currentLevel++;
+    hearts++;
     endRound();
   }
   else {
@@ -130,21 +147,14 @@ function scoreMove (value) {
   setScore();
 }
 
-function checkHighScore () {
-  if (score > highScore) {
-    highScore = score;
+function applyHeart () {
+  if (hearts > 0) {
+    currentValue--;
+    setCurrentValue(currentValue);
+    scoreMove(1);
+    hearts--;
   }
-  //setHighScore();
-}
-
-function setHighScore () {
-  const highScoreDisplay = document.getElementById("high-score");
-  highScoreDisplay.innerText = highScore;
-}
-
-function setShotsRemaining () {
-  const shotsRemaining = document.getElementById("shots");
-  shotsRemaining.innerText = currentRound.length - choicesIndex;
+  setHearts();
 }
 
 function endRound () {
@@ -154,9 +164,10 @@ function endRound () {
   choiceTwo.hidden = true;
   const choiceThree = document.getElementById("choice-three").children[0];
   choiceThree.hidden = true;
-  const continueButton = document.getElementById("continue").children[0];
+  const heartButton = document.getElementById("heart-button");
+  heartButton.hidden = true;
+  const continueButton = document.getElementById("next");
   continueButton.hidden = false;
-  checkHighScore();
 }
 
 function continueGame () {
@@ -166,9 +177,11 @@ function continueGame () {
   choiceTwo.hidden = false;
   const choiceThree = document.getElementById("choice-three").children[0];
   choiceThree.hidden = false;
-  const continueButton = document.getElementById("continue").children[0];
+  const continueButton = document.getElementById("next");
   continueButton.hidden = true;
-  const round = buildRound(startingValue, primeTarget, munitions, maxMoves);
+  const heartButton = document.getElementById("heart-button");
+  heartButton.hidden = false;
+  const round = buildRound(startingValue, primeTarget, primes, maxMoves);
   currentRound = round;
   choicesIndex = 0;
   currentValue = startingValue;
@@ -176,10 +189,11 @@ function continueGame () {
   setCurrentValue(startingValue);
   setChoices(currentRound[choicesIndex]);
   setCurrentLevel();
+  setHearts();
 }
 
 function main () {
-  const round = buildRound(startingValue, primeTarget, munitions, maxMoves);
+  const round = buildRound(startingValue, primeTarget, primes, maxMoves);
   currentRound = round;
   setCurrentValue(startingValue);
   setTarget(primeTarget);
@@ -187,6 +201,7 @@ function main () {
   setScore();
   setShotsRemaining();
   setCurrentLevel();
+  setHearts();
 }
 
 main();

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,29 +10,46 @@
   <script type='text/javascript' src='app.js' async></script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
+
   <h1>Prime Target</h1>
+
   <div class="parent">
+
     <div id="shots" class="pad blue"></div>
+
     <div id="current-value" class="pad red"></div>
+
     <div id="score" class="pad blue"></div>
+
     <div id="choice-one" class="pad">
       <button type="button" class="red"></button>
     </div>
+
     <div id="choice-two" class="pad">
       <button type="button" class="white"></button>
     </div>
+
     <div id="choice-three" class="pad">
       <button type="button" class="red"></button>
     </div>
+
     <div id="current-level" class="pad blue"></div>
+
     <div id="target" class="pad red"></div>
+
     <div id="continue" class="pad blue">
-      <button type="button" class="blue" onclick="continueGame();" hidden>Next</button>
+
+      <button type="button" id="heart-button" class="blue" onclick="applyHeart();">1<sup id="heart"></sup></button>
+
+      <button type="button" id="next" class="blue" onclick="continueGame();" hidden>Next</button>
     </div>
+
   </div>
+
   <div class="buy-me-a-coffee">
     <p>
       If you think this game is fun and would like to help me
@@ -43,6 +61,7 @@
         src="https://cdn.buymeacoffee.com/buttons/v2/arial-black.png" alt="Buy Me A Coffee"
         style="height: 60px !important;width: 217px !important;"></a>
   </div>
+
 </body>
 
 </html>
