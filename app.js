@@ -142,9 +142,20 @@ function scoreMove (value) {
   }
   else {
     score = score - value - (startingValue - currentValue);
+    if (hearts > 0) {
+      hearts--;
+    }
     endRound();
+    if (hearts == 0) {
+      gameOver();
+    }
   }
   setScore();
+}
+
+function gameOver () {
+  const continueButton = document.getElementById("next");
+  continueButton.innerText = "Game Over";
 }
 
 function applyHeart () {
@@ -171,25 +182,40 @@ function endRound () {
 }
 
 function continueGame () {
-  const choiceOne = document.getElementById("choice-one").children[0];
-  choiceOne.hidden = false;
-  const choiceTwo = document.getElementById("choice-two").children[0];
-  choiceTwo.hidden = false;
-  const choiceThree = document.getElementById("choice-three").children[0];
-  choiceThree.hidden = false;
   const continueButton = document.getElementById("next");
-  continueButton.hidden = true;
-  const heartButton = document.getElementById("heart-button");
-  heartButton.hidden = false;
-  const round = buildRound(startingValue, primeTarget, primes, maxMoves);
-  currentRound = round;
-  choicesIndex = 0;
-  currentValue = startingValue;
-  setShotsRemaining();
-  setCurrentValue(startingValue);
-  setChoices(currentRound[choicesIndex]);
-  setCurrentLevel();
-  setHearts();
+  const nextText = continueButton.innerText;
+  if (nextText == "Game Over") {
+    currentValue = startingValue;
+    currentRound;
+    choicesIndex = 0;
+    score = 0;
+    maxMoves = 9
+    currentLevel = 1;
+    highScore = 0;
+    hearts = 3;
+    continueButton.innerText = "Play Again";
+    main();
+  } else {
+    continueButton.innerText = "Next";
+    const choiceOne = document.getElementById("choice-one").children[0];
+    choiceOne.hidden = false;
+    const choiceTwo = document.getElementById("choice-two").children[0];
+    choiceTwo.hidden = false;
+    const choiceThree = document.getElementById("choice-three").children[0];
+    choiceThree.hidden = false;
+    continueButton.hidden = true;
+    const heartButton = document.getElementById("heart-button");
+    heartButton.hidden = false;
+    const round = buildRound(startingValue, primeTarget, primes, maxMoves);
+    currentRound = round;
+    choicesIndex = 0;
+    currentValue = startingValue;
+    setShotsRemaining();
+    setCurrentValue(startingValue);
+    setChoices(currentRound[choicesIndex]);
+    setCurrentLevel();
+    setHearts();
+  }
 }
 
 function main () {
