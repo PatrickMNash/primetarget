@@ -132,7 +132,7 @@ function scoreMove (value) {
   if (currentValue > primeTarget && choicesIndex < currentRound.length) {
     score = score + value;
   } else if (currentValue == primeTarget) {
-    score = score + value + primeTarget;
+    score = score + value + primeTarget + currentLevel;
     if (maxMoves > 3) {
       maxMoves--;
     }
@@ -141,7 +141,7 @@ function scoreMove (value) {
     endRound();
   }
   else {
-    score = score - value - (startingValue - currentValue);
+    score = score - value - (startingValue - currentValue) - currentLevel;
     endRound();
     if (hearts == 0) {
       gameOver();
