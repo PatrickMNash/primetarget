@@ -147,7 +147,10 @@ function scoreMove (value) {
       gameOver();
     }
     if (hearts > 0) {
-      hearts--;
+      hearts = hearts - (Math.floor(currentLevel / 7) + 1);
+    }
+    if (hearts < 0) {
+      hearts = 0;
     }
   }
   setScore();
