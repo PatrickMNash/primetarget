@@ -142,12 +142,12 @@ function scoreMove (value) {
   }
   else {
     score = score - value - (startingValue - currentValue);
-    if (hearts > 0) {
-      hearts--;
-    }
     endRound();
     if (hearts == 0) {
       gameOver();
+    }
+    if (hearts > 0) {
+      hearts--;
     }
   }
   setScore();
