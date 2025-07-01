@@ -1,11 +1,35 @@
+/*
+    Color Palette Based On The Disability Pride Flag Colors
+      
+      black   #5E605F 
+      red     #DD7083 
+      yellow  #F0E067 
+      white   #E9E9E9 
+      blue    #69C6E5 
+      green   #08B37C
+*/
+
 body {
   margin: 30px;
-  background-color: rgb(229, 244, 249);
+  background-color: #E9E9E9;
+  color: #5E605F;
 }
 
 h1 {
   font-size: 72px;
   font-family: sans-serif;
+}
+
+.three-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .three-columns-grid {
+    grid-template-columns: 1fr;
+    /* Stacks columns on small screens */
+  }
 }
 
 .parent {
@@ -16,17 +40,18 @@ h1 {
 }
 
 .pad {
-  background-color: #C8E6C9;
+  background-color: #08B37C;
   border-radius: 5px;
   display: grid;
   place-items: center;
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  border-width: 2px;
+  border-color: #5E605F;
   font-family: sans-serif;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  color: #5E605F;
 }
 
 .pad>button {
@@ -35,21 +60,27 @@ h1 {
   font-weight: bold;
   text-align: center;
   border-radius: 5px;
+  border-width: 0px;
   height: 100%;
   width: 100%;
-  border-color: black;
+  border-color: #5E605F;
+  color: #5E605F;
 }
 
 .red {
-  background-color: #DC0032;
+  background-color: #DD7083;
 }
 
 .white {
-  background-color: #FAF9F6;
+  background-color: #E9E9E9;
 }
 
 .blue {
-  background-color: #B9D7EB;
+  background-color: #69C6E5;
+}
+
+.yellow {
+  background: #F0E067;
 }
 
 .buy-me-a-coffee>p {
