@@ -9,85 +9,13 @@
       green   #08B37C
 */
 
-body {
-  margin: 30px;
-  background-color: #E9E9E9;
-  color: #5E605F;
-  font-family: sans-serif;
-}
-
-h1 {
-  font-size: 72px;
-}
-
-.three-columns-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-@media (max-width: 768px) {
-  .three-columns-grid {
-    grid-template-columns: 1fr;
-    /* Stacks columns on small screens */
-  }
-}
-
-.parent {
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-}
-
-.pad {
-  background-color: #08B37C;
-  border-radius: 5px;
-  display: grid;
-  place-items: center;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #5E605F;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  color: #5E605F;
-}
-
-.pad>button {
-  font-family: sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 5px;
-  border-width: 0px;
-  height: 100%;
-  width: 100%;
-  border-color: #5E605F;
-  color: #5E605F;
-}
-
-.red {
-  background-color: #DD7083;
-}
-
-.white {
-  background-color: #E9E9E9;
-}
-
-.blue {
-  background-color: #69C6E5;
-}
-
-.yellow {
-  background-color: #F0E067;
-}
-
 /* Menu code starts here */
 
 #menuToggle {
   display: block;
   position: relative;
   z-index: 1;
+
   -webkit-user-select: none;
   user-select: none;
 }
@@ -189,4 +117,79 @@ h1 {
 
 #menuToggle input:checked~ul {
   transform: none;
+}
+
+body {
+  margin: 30px;
+  background-color: #E9E9E9;
+  color: #5E605F;
+  font-family: sans-serif;
+  user-select: none;
+}
+
+h1 {
+  font-size: 72px;
+}
+
+button {
+  all: unset;
+}
+
+.three-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .three-columns-grid {
+    grid-template-columns: 1fr;
+    /* Stacks columns on small screens */
+  }
+}
+
+.parent {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+
+.pad {
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #5E605F;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #5E605F;
+  font-family: sans-serif;
+}
+
+.pad>button {
+  border-width: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.red {
+  background-color: #DD7083;
+}
+
+.white {
+  background-color: #E9E9E9;
+}
+
+.blue {
+  background-color: #69C6E5;
+}
+
+.yellow {
+  background-color: #F0E067;
+}
+
+.green {
+  background-color: #08B37C;
 }

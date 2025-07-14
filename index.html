@@ -2,90 +2,60 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prime Target</title>
   <script type='text/javascript' src='app.js' async></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" defer>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
   <div class="three-columns-grid">
-
     <div>
-
       <nav role="navigation">
-
         <div id="menuToggle">
-
           <input type="checkbox" id="menuCheckbox" />
-
           <span></span>
           <span></span>
           <span></span>
-
           <ul id="menu">
-
             <li>
-
               <a href="./">
                 <label for="menuCheckbox" onclick="this.parentNode.click();">Home</label>
               </a>
-
             </li>
-
             <li>
               <a href="./about.html">
                 <label for="menuCheckbox" onclick="this.parentNode.click();">About</label>
               </a>
             </li>
-
           </ul>
-
         </div>
-
       </nav>
-
     </div>
-
     <div>
       <h1>Prime Target</h1>
-
       <div class="parent">
-
-        <div id="shots" class="pad blue"></div>
-
-        <div id="current-value" class="pad red"></div>
-
-        <div id="score" class="pad blue"></div>
-
-        <div id="choice-one" class="pad">
-          <button type="button" class="red"></button>
+        <div id="pad-1" class="pad blue"></div>
+        <div id="pad-2" class="pad red"></div>
+        <div id="pad-3" class="pad blue"></div>
+        <div id="pad-4" class="pad red">
+          <button type="button"></button>
         </div>
-
-        <div id="choice-two" class="pad">
-          <button type="button" class="yellow"></button>
+        <div id="pad-5" class="pad yellow">
+          <button type="button"></button>
         </div>
-
-        <div id="choice-three" class="pad">
-          <button type="button" class="red"></button>
+        <div id="pad-6" class="pad red">
+          <button type="button"></button>
         </div>
-
-        <div id="current-level" class="pad blue"></div>
-
-        <div id="target" class="pad red"></div>
-
-        <div id="continue" class="pad blue">
-          <button type="button" id="heart-button" class="blue" onclick="applyHeart();"></button>
-          <button type="button" id="next" class="blue" onclick="continueGame();" hidden>Next</button>
+        <div id="pad-7" class="pad blue"></div>
+        <div id="pad-8" class="pad red"></div>
+        <div id="pad-9" class="pad blue">
+          <button type="button"></button>
         </div>
-
       </div>
-
     </div>
     <div></div>
   </div>

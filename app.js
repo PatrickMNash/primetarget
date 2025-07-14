@@ -7,7 +7,6 @@ let choicesIndex = 0;
 let score = 0;
 let maxMoves = 9
 let currentLevel = 1;
-let highScore = 0;
 let hearts = 3;
 
 function getPrime (primes) {
@@ -20,7 +19,6 @@ function buildPath (startingValue, primeTarget, primes) {
   const goal = primeTarget;
   const _primes = primes;
   const path = [];
-
   while (start != goal) {
     let prime = start + 1;
     while (prime > start) {
@@ -57,61 +55,55 @@ function buildRound (startingValue, primeTarget, primes, maxMoves) {
   while (round.length != maxMoves) {
     round = buildPath(startingValue, primeTarget, primes);
   }
-
   for (let i = 0; i < round.length; i++) {
     const prime = round[i];
     const choices = buildChoices(prime, primes);
     round[i] = choices;
   }
-
   return round;
 }
 
 function setCurrentValue (value) {
-  const curValueDiv = document.getElementById("current-value");
-  curValueDiv.innerText = value;
+  const pad2 = document.getElementById("pad-2");
+  pad2.innerText = value;
 }
 
 function setTarget (value) {
-  const targetValueDiv = document.getElementById("target");
-  targetValueDiv.innerText = value;
+  const pad8 = document.getElementById("pad-8");
+  pad8.innerText = value;
 }
 
 function setChoices (choices) {
-  const choiceOne = document.getElementById("choice-one").children[0];
-  choiceOne.innerText = choices[0];
-  choiceOne.onclick = () => applyPrime(choices[0]);
-  const choiceTwo = document.getElementById("choice-two").children[0];
-  choiceTwo.innerText = choices[1];
-  choiceTwo.onclick = () => applyPrime(choices[1]);
-  const choiceThree = document.getElementById("choice-three").children[0];
-  choiceThree.innerText = choices[2];
-  choiceThree.onclick = () => applyPrime(choices[2]);
+  const pad4Button = document.getElementById("pad-4").children[0];
+  pad4Button.innerText = choices[0];
+  pad4Button.onclick = () => applyPrime(choices[0]);
+  const pad5Button = document.getElementById("pad-5").children[0];
+  pad5Button.innerText = choices[1];
+  pad5Button.onclick = () => applyPrime(choices[1]);
+  const pad6Button = document.getElementById("pad-6").children[0];
+  pad6Button.innerText = choices[2];
+  pad6Button.onclick = () => applyPrime(choices[2]);
 }
 
 function setScore () {
-  const scoreDisplay = document.getElementById("score");
-  scoreDisplay.innerText = score;
+  const pad3 = document.getElementById("pad-3");
+  pad3.innerText = score;
 }
 
 function setCurrentLevel () {
-  const levelDisplay = document.getElementById("current-level");
-  levelDisplay.innerText = currentLevel;
-}
-
-function setHighScore () {
-  const highScoreDisplay = document.getElementById("high-score");
-  highScoreDisplay.innerText = highScore;
+  const pad7 = document.getElementById("pad-7");
+  pad7.innerText = currentLevel;
 }
 
 function setShotsRemaining () {
-  const shotsRemaining = document.getElementById("shots");
-  shotsRemaining.innerText = currentRound.length - choicesIndex;
+  const pad1 = document.getElementById("pad-1");
+  pad1.innerText = currentRound.length - choicesIndex;
 }
 
 function setHearts () {
-  const heartsDisplay = document.getElementById("heart-button");
-  heartsDisplay.innerText = hearts;
+  const pad9Button = document.getElementById("pad-9").children[0];
+  pad9Button.innerText = hearts;
+  pad9Button.onclick = () => applyHeart();
 }
 
 function applyPrime (value) {
@@ -121,9 +113,6 @@ function applyPrime (value) {
   setShotsRemaining();
   if (choicesIndex < currentRound.length) {
     setChoices(currentRound[choicesIndex]);
-  }
-  else {
-    endRound();
   }
   scoreMove(value);
 }
@@ -142,95 +131,96 @@ function scoreMove (value) {
   }
   else {
     score = score - value - (startingValue - currentValue) - currentLevel;
-    endRound();
-    if (hearts == 0) {
-      gameOver();
-    }
     if (hearts > 0) {
       hearts = hearts - (Math.floor(currentLevel / 7) + 1);
+      if (hearts < 0) {
+        hearts = 0;
+      }
+    } else if (hearts == 0) {
+      hearts--;
     }
-    if (hearts < 0) {
-      hearts = 0;
-    }
+    endRound();
   }
   setScore();
-}
-
-function gameOver () {
-  const continueButton = document.getElementById("next");
-  continueButton.innerText = "Game Over";
 }
 
 function applyHeart () {
   if (hearts > 0) {
+    hearts--;
+    setHearts();
     currentValue--;
     setCurrentValue(currentValue);
     scoreMove(1);
-    hearts--;
   }
-  setHearts();
 }
 
 function endRound () {
-  const choiceOne = document.getElementById("choice-one").children[0];
-  choiceOne.hidden = true;
-  const choiceTwo = document.getElementById("choice-two").children[0];
-  choiceTwo.hidden = true;
-  const choiceThree = document.getElementById("choice-three").children[0];
-  choiceThree.hidden = true;
-  const heartButton = document.getElementById("heart-button");
-  heartButton.hidden = true;
-  const continueButton = document.getElementById("next");
-  continueButton.hidden = false;
-}
-
-function continueGame () {
-  const continueButton = document.getElementById("next");
-  const nextText = continueButton.innerText;
-  if (nextText == "Game Over") {
-    currentValue = startingValue;
-    currentRound;
-    choicesIndex = 0;
-    score = 0;
-    maxMoves = 9
-    currentLevel = 1;
-    highScore = 0;
-    hearts = 3;
-    continueButton.innerText = "Play Again";
-    main();
-  } else {
-    continueButton.innerText = "Next";
-    const choiceOne = document.getElementById("choice-one").children[0];
-    choiceOne.hidden = false;
-    const choiceTwo = document.getElementById("choice-two").children[0];
-    choiceTwo.hidden = false;
-    const choiceThree = document.getElementById("choice-three").children[0];
-    choiceThree.hidden = false;
-    continueButton.hidden = true;
-    const heartButton = document.getElementById("heart-button");
-    heartButton.hidden = false;
-    const round = buildRound(startingValue, primeTarget, primes, maxMoves);
-    currentRound = round;
-    choicesIndex = 0;
-    currentValue = startingValue;
-    setShotsRemaining();
-    setCurrentValue(startingValue);
-    setChoices(currentRound[choicesIndex]);
-    setCurrentLevel();
-    setHearts();
+  hideChoices();
+  const pad9Button = document.getElementById("pad-9").children[0];
+  pad9Button.innerText = "Next";
+  pad9Button.onclick = () => next();
+  if (hearts < 0) {
+    pad9Button.innerText = "Game Over";
+    pad9Button.onclick = () => {
+      pad9Button.innerText = "Play Again";
+      pad9Button.onclick = () => initGame();
+    };
   }
 }
 
-function main () {
-  const round = buildRound(startingValue, primeTarget, primes, maxMoves);
-  currentRound = round;
+function showChoices () {
+  const pad4Button = document.getElementById("pad-4").children[0];
+  pad4Button.style.visibility = "visible";
+  document.getElementById("pad-4").className = "pad red";
+  const pad5Button = document.getElementById("pad-5").children[0];
+  pad5Button.style.visibility = "visible";
+  document.getElementById("pad-5").className = "pad yellow";
+  const pad6Button = document.getElementById("pad-6").children[0];
+  pad6Button.style.visibility = "visible";
+  document.getElementById("pad-6").className = "pad red";
+}
+
+function hideChoices () {
+  const pad4Button = document.getElementById("pad-4").children[0];
+  pad4Button.style.visibility = "hidden";
+  document.getElementById("pad-4").className = "pad green";
+  const pad5Button = document.getElementById("pad-5").children[0];
+  pad5Button.style.visibility = "hidden";
+  document.getElementById("pad-5").className = "pad green";
+  const pad6Button = document.getElementById("pad-6").children[0];
+  pad6Button.style.visibility = "hidden";
+  document.getElementById("pad-6").className = "pad green";
+}
+
+function next () {
+  initRound();
+}
+
+function initRound () {
+  showChoices();
+  currentRound = buildRound(startingValue, primeTarget, primes, maxMoves);
+  currentValue = startingValue;
   setCurrentValue(startingValue);
-  setTarget(primeTarget);
+  choicesIndex = 0;
   setChoices(currentRound[choicesIndex]);
-  setScore();
   setShotsRemaining();
   setCurrentLevel();
   setHearts();
 }
 
-main();
+function initGame () {
+  hearts = 3;
+  maxMoves = 9;
+  initRound();
+  score = 0;
+  setScore();
+  currentLevel = 1;
+  setCurrentLevel();
+  setTarget(primeTarget);
+}
+
+function main () {
+  initGame();
+}
+
+window.onload = () => main();

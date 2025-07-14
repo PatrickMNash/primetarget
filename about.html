@@ -2,73 +2,53 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prime Target::About</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" defer>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
 </head>
 
 <body>
   <div class="three-columns-grid">
-
     <div>
-
       <nav role="navigation">
-
         <div id="menuToggle">
-
           <input type="checkbox" id="menuCheckbox" />
-
           <span></span>
           <span></span>
           <span></span>
-
           <ul id="menu">
-
             <li>
               <a href="./">
                 <label for="menuCheckbox" onclick="this.parentNode.click();">Home</label>
               </a>
             </li>
-
             <li>
               <a href="./about.html">
                 <label for="menuCheckbox" onclick="this.parentNode.click();">About</label>
               </a>
             </li>
-
           </ul>
-
         </div>
-
       </nav>
-
     </div>
-
     <div>
       <h1>About</h1>
-
       <p>
         Prime Target is a math game. It is a relatively simple concept that proves more challenging than it might appear
         at first.
       </p>
-
       <h2>Game Play</h2>
-
       <p>
         The concept is fairly simple, subtract values from a starting value until a target value is reached, undershot,
         or until moves have been exhausted.
       </p>
-
       <h2>The Game Interface</h2>
       <p>
         The game interface is a simple 3x3 grid of colored squares.
       </p>
-
       <div class="parent">
         <div id="shots" class="pad blue">1</div>
         <div id="current-value" class="pad red">2</div>
@@ -80,9 +60,7 @@
         <div id="target" class="pad red">8</div>
         <div id="continue" class="pad blue">9</div>
       </div>
-
       <h3>The Meaning Of Each Square In The Grid</h3>
-
       <h4>Square 1</h4>
       <p>
         Square 1 is the number of moves you have left in the current round. As you select values to subtract this
@@ -92,38 +70,31 @@
         As the level of the game increases the number of moves decreases until you reach level 7 and 3 moves.
         This is the minimal number of moves.
       </p>
-
       <h4>Square 2</h4>
       <p>
         Square 2 is the starting value and current value after performing a subtraction.
       </p>
-
       <h4>Square 3</h4>
       <p>
         Square 3 is your current score.
       </p>
-
       <h4>Squares 4-6</h4>
       <p>
         Squares 4, 5, and 6 are the available values you can subtract from Square 2.
       </p>
-
       <h4>Square 7</h4>
       <p>
         Square 7 is the current level. Every time the target value is reached the level increases by 1.
       </p>
-
       <h4>Square 8</h4>
       <p>
         Square 8 is the target value that must be reached in order to succesfullly complete a level.
       </p>
-
       <h4>Square 9</h4>
       <p>
         Square 9 is "hearts". Pressing Square 9 allows you to subtract 1 from Square 2. This does not count
         against Square 1 (moves remaining). Performing multiple decrements is allowed.
       </p>
-
       <h2>Losing Hearts</h2>
       <p>
         If a round ends without reaching the target (Square 8) then hearts are subtracted from the total in Square 9.
@@ -134,18 +105,15 @@
         penalty increases by 1. Example: The penalty at level 49 would be: 49 / 7 = 7, 7 + 1 = 8 hearts
         deducted if the target is missed.
       </p>
-
       <h2>Gaining Hearts</h2>
       <p>
         When the target is reached and the level is advanced, 1 heart is added to the total in Square 9.
       </p>
-
       <h2>Game Over</h2>
       <p>
         The game is over when there are 0 hearts left in Square 9 and the round ends with the target (Square
         8) being missed.
       </p>
-
       <h2>Support</h2>
       <p>
         If you think this game is fun and would like to help me
@@ -156,13 +124,9 @@
       <a href="https://www.buymeacoffee.com/patrickmnash" target="_blank"><img
           src="https://cdn.buymeacoffee.com/buttons/v2/arial-black.png" alt="Buy Me A Coffee"
           style="height: 30px !important;width: 108.5px !important;"></a>
-
     </div>
-
     <div></div>
-
   </div>
-
 </body>
 
 </html>
